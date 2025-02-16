@@ -1,9 +1,10 @@
 package pages;
 
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
-import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
 public class HomePage {
 
@@ -13,6 +14,9 @@ public class HomePage {
     private final SelenideElement inputDescription= $("input[name=description]");
     private final SelenideElement inputImageUrl= $("input[name=imageUrl]");
     private final SelenideElement buttonSave= $("button[type=submit]");
+    private final SelenideElement inputSearch= $("input[placeholder='Поиск по объявлениям']");
+    private final SelenideElement buttonSearch= $("button[class='chakra-button css-1oamcjg']");
+    private final ElementsCollection items= $$("div[class='css-1w07v7s'] a");
 
     public HomePage clickOnCreate() {
         createButton.click();
@@ -41,6 +45,21 @@ public class HomePage {
     public HomePage buttonSave() {
         buttonSave.click();
         return this;
+    }
+
+    public HomePage inputSearch(String search) {
+        inputSearch.setValue(search);
+        return this;
+    }
+
+    public HomePage buttonSearch(){
+        buttonSearch.click();
+        return this;
+    }
+
+    public ItemPage clickItem() {
+        items.get(0).click();
+        return new ItemPage();
     }
 
 }
