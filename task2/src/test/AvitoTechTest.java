@@ -38,6 +38,6 @@ public class AvitoTechTest extends BaseTest{
     @DisplayName("Проверка поиска объявлений")
     public void test3() throws InterruptedException {
         open(baseUrl, HomePage.class)
-                .inputSearch("ёлка");
+                .inputSearch("ка");
     }
 }
