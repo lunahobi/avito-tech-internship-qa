@@ -22,10 +22,9 @@ public class AvitoTechTest extends BaseTest{
 
     @Test
     @DisplayName("Проверка редактирования объявления")
-    public void test2(){
+    public void test2() throws InterruptedException {
         open(baseUrl, HomePage.class)
                 .inputSearch("ёлка")
-                .buttonSearch()
                 .clickItem()
                 .clickEditIcon()
                 .inputImageUrl("https://i.pinimg.com/736x/75/ab/7c/75ab7ce5b5aa8bf28522e297d0fded7c.jpg")
@@ -33,5 +32,12 @@ public class AvitoTechTest extends BaseTest{
                 .inputPrice(15000)
                 .inputDescription("ёлка для новогоднего настроения")
                 .clickCheckIcon();
+    }
+
+    @Test
+    @DisplayName("Проверка поиска объявлений")
+    public void test3() throws InterruptedException {
+        open(baseUrl, HomePage.class)
+                .inputSearch("ёлка");
     }
 }

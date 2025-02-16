@@ -2,9 +2,12 @@ package pages;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class HomePage {
 
@@ -47,13 +50,14 @@ public class HomePage {
         return this;
     }
 
-    public HomePage inputSearch(String search) {
+    public HomePage inputSearch(String search) throws InterruptedException {
         inputSearch.setValue(search);
-        return this;
-    }
-
-    public HomePage buttonSearch(){
         buttonSearch.click();
+        Thread.sleep(5000);
+        for (SelenideElement item: items){
+            SelenideElement name = item.find(By.cssSelector(" h4"));
+            assertTrue("Поиск сработал некорректно", name.getText().toLowerCase().contains(search.toLowerCase()));
+        }
         return this;
     }
 
